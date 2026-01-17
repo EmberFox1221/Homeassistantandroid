@@ -34,9 +34,7 @@ jobs:
           ruby-version: "4.0.1"
           bundler-cache: true
 
-      - uses: ./.github/actions/create-release-number
-        name: Create Release Number
-        id: rel_number
+    
 
       - name: Build Release
         
@@ -53,7 +51,7 @@ jobs:
         if: github.event.inputs.beta == 'true'
         shell: bash
         env:
-          VERSION_CODE: ${{ steps.rel_number.outputs.version-code }}
+          VERSION_CODE: "a"
         run: |
           echo $VERSION_CODE > ./app/build/outputs/version_code.txt
 
@@ -61,8 +59,8 @@ jobs:
         if: github.event.inputs.beta == 'true'
         uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
         with:
-          tag_name: ${{ steps.rel_number.outputs.version }}
-          body_path: ./app/build/outputs/changelogGithub
+          tag_name: "a"
+          body_path: "a"
           draft: false
           prerelease: true
           files: |
