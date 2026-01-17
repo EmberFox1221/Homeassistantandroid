@@ -1,3 +1,4 @@
+
 package io.homeassistant.companion.android.onboarding
 
 import android.annotation.SuppressLint
@@ -118,6 +119,8 @@ class OnboardingActivity :
             showLoading()
             try {
                 val url = "homeassistant://wear-phone-signin${if (instance != null) "?url=${instance.url}" else ""}"
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                /*startActivity(browserIntent)
                 remoteActivityHelper.startRemoteActivity(
                     Intent(Intent.ACTION_VIEW).apply {
                         addCategory(Intent.CATEGORY_DEFAULT)
@@ -126,7 +129,7 @@ class OnboardingActivity :
                     },
                     // A Wear device only has one companion device so this is not needed
                     null,
-                ).await()
+                ).await() */
                 showContinueOnPhone()
             } catch (e: Exception) {
                 if (e is RemoteActivityHelper.RemoteIntentException) {
